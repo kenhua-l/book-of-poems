@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PoemsComponent } from './poems/poems.component';
 import { PoemDetailComponent } from './poem-detail/poem-detail.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PoemsComponent,
-    PoemDetailComponent
+    PoemDetailComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

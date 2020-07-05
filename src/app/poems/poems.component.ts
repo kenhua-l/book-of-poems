@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Poem } from '../poem';
 import { PoemService } from '../poem.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-poems',
@@ -11,7 +12,7 @@ export class PoemsComponent implements OnInit {
   poems: Poem[];
   selectedPoem: Poem;
 
-  constructor(private poemService: PoemService) { }
+  constructor(private poemService: PoemService, private messageService: MessageService) { }
 
   getPoems(): void {
     this.poemService.getPoems()
@@ -25,5 +26,6 @@ export class PoemsComponent implements OnInit {
 
   onSelect(poem: Poem): void {
     this.selectedPoem = poem;
+    this.messageService.add(`PoemsComponent: Selected ${poem.name}`);
   }
 }
