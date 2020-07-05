@@ -16,4 +16,9 @@ export class PoemService {
     this.messageService.add('PoemService: fetched poems');
     return of(POEMS);
   }
+
+  getPoem(id: number): Observable<Poem> {
+    this.messageService.add(`PoemService: fetched poem ${id}`);
+    return of(POEMS.find(poem => poem.id === id));
+  }
 }

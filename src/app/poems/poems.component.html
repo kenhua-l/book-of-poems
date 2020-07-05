@@ -1,10 +1,8 @@
 <h2>My Poems</h2>
 <ul class="poems">
-  <li *ngFor="let poem of poems"
-      [class.selected]="poem == selectedPoem"
-      (click)="onSelect(poem)">
-    <span class="list-item">{{poem.id}}</span> {{poem.name}}
+  <li *ngFor="let poem of poems">
+    <a routerLink="/detail/{{poem.id}}">
+      <span class="list-item">{{poem.id}}</span> {{poem.name}}
+    </a>
   </li>
 </ul>
-
-<app-poem-detail [poem]="selectedPoem"></app-poem-detail>

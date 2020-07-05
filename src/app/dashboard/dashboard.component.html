@@ -1,6 +1,6 @@
 <h3>Top Poems</h3>
 <div class="grid grid-pad">
-  <a *ngFor="let poem of poems" class="col-1-4">
+  <a *ngFor="let poem of poems" class="col-1-4" routerLink="/detail/{{poem.id}}">
     <div class="module poem">
       <h4>{{poem.name}}</h4>
     </div>

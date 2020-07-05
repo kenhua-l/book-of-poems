@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
 
   getPoems(): void {
     this.poemService.getPoems()
-        .subscribe(poems => this.poems = poems.slice(1, 3));
+        .subscribe(poems => this.poems = poems.slice(0, 3));
   }
 
 }
