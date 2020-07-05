@@ -1,8 +1,15 @@
 <h2>My Poems</h2>
+<div>
+  <label>Poem Title:
+    <input #poemTitle />
+  </label>
+  <button (click)="add(poemTitle.value); poemTitle.value=''">add</button>
+</div>
 <ul class="poems">
   <li *ngFor="let poem of poems">
     <a routerLink="/detail/{{poem.id}}">
       <span class="list-item">{{poem.id}}</span> {{poem.name}}
     </a>
+    <button class="delete" title="delete poem" (click)="delete(poem)">X</button>
   </li>
 </ul>

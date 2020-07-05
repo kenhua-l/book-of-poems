@@ -15,7 +15,7 @@ export class PoemService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  
+
   constructor(
     private http: HttpClient,
     private messageService: MessageService
@@ -37,11 +37,44 @@ export class PoemService {
     );
   }
 
+  addPoem(poem: Poem): Observable<Poem> {
+    return this.http.post<Poem>(this.poemsUrl, poem, this.httpOptions)
+               .pipe(
+                 tap((newPoem: Poem) => this.log(`added poem w/ id=${newPoem.id}`)),
+                 catchError(this.handleError<Poem>('addPoem'))
+               );
+  }
+
+  deletePoem(poem: Poem | number): Observable<Poem> {
+    const id = typeof poem === 'number' ? poem : poem.id;
+    const url = `${this.poemsUrl}/${id}`;
+
+    return this.http.delete<Poem>(url, this.httpOptions)
+               .pipe(
+                 tap(_ => this.log(`deleted poem ${id}`)),
+                 catchError(this.handleError<Poem>('deletePoem'))
+               );
+  }
+
   updatePoem(poem: Poem): Observable<any> {
     return this.http.put(this.poemsUrl, poem, this.httpOptions)
                .pipe(
                  tap(_ => this.log(`updated poem ${poem.id}`)),
                  catchError(this.handleError<any>('updatePoem'))
+               );
+  }
+
+  searchPoems(term: string): Observable<Poem[]> {
+    if(!term.trim()) {
+      return of([]);
+    }
+    return this.http.get<Poem[]>(`${this.poemsUrl}/?name=${term}`)
+               .pipe(
+                 tap(x => x.length ?
+                   this.log(`found poems matching "${term}"`) :
+                   this.log(`no poems matching "${term}"`)
+                 ),
+                 catchError(this.handleError<Poem[]>('searchPoems', []))
                );
   }
 

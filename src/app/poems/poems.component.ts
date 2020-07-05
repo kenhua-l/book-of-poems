@@ -12,9 +12,23 @@ export class PoemsComponent implements OnInit {
 
   constructor(private poemService: PoemService) { }
 
+  add(name: string): void {
+    name = name.trim();
+    if(!name) { return; }
+    this.poemService.addPoem({ name } as Poem)
+        .subscribe(poem => {
+          this.poems.push(poem);
+        });
+  }
+
   getPoems(): void {
     this.poemService.getPoems()
         .subscribe(poems => this.poems = poems);
+  }
+
+  delete(poem: Poem): void {
+    this.poems = this.poems.filter(x => x !== poem);
+    this.poemService.deletePoem(poem).subscribe();
   }
 
   ngOnInit(): void {
