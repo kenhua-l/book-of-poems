@@ -1,7 +1,17 @@
-<h2>{{poem.id}}. {{poem.name | uppercase}}</h2>
-<p>{{poem.content}}</p>
-<div>
-  <label>name:
-    <input [(ngModel)]="poem.name" placeholder="name" />
-  </label>
+<h2>My Poems</h2>
+<ul class="poems">
+  <li *ngFor="let poem of poems"
+      [class.selected]="poem == selectedPoem"
+      (click)="onSelect(poem)">
+    <span class="list-item">{{poem.id}}</span> {{poem.name}}
+  </li>
+</ul>
+
+<div *ngIf="selectedPoem">
+  <h2>{{selectedPoem.name | uppercase }}</h2>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedPoem.name" placeholder="name" />
+    </label>
+  </div>
 </div>
