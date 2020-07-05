@@ -11,7 +11,7 @@ import { PoemService } from '../poem.service';
 })
 export class PoemDetailComponent implements OnInit {
   poem: Poem;
-  
+
   constructor(
     private route: ActivatedRoute,
     private poemService: PoemService,
@@ -30,6 +30,11 @@ export class PoemDetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    this.poemService.updatePoem(this.poem)
+        .subscribe(() => this.goBack());
   }
 
 }
