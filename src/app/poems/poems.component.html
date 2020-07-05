@@ -1,0 +1,7 @@
+<h2>{{poem.id}}. {{poem.name | uppercase}}</h2>
+<p>{{poem.content}}</p>
+<div>
+  <label>name:
+    <input [(ngModel)]="poem.name" placeholder="name" />
+  </label>
+</div>
