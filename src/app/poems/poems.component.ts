@@ -8,13 +8,6 @@ import { POEMS } from '../mock-poems';
   styleUrls: ['./poems.component.scss']
 })
 export class PoemsComponent implements OnInit {
-  // poem = 'Romance';
-  // poem: Poem = {
-  //   id: 1,
-  //   name: 'Romance',
-  //   content: 'The weather must be good in your city these days\n' +
-  //           'Because you are such a sunshine'
-  // }
   poems = POEMS;
   selectedPoem: Poem;
 
